@@ -1,21 +1,26 @@
 #!/bin/bash
 
-sudo apt-get -y update 
-sudo apt-get install -y apache2 git php5 php5-mysql php5-curl mysql-client curl
-sudo curl -sS https://getcomposer.org/installer | php
-sudo php composer.phar require aws/aws-sdk-php
+sudo apt-get update -y
+sudo apt-get install -y apache2 git php5 php5-curl mysql-client curl php5-mysql
+git clone https://github.com/snehakarunakaran/ITMO544-Fall-Application-MP1.git
 
+#mv ./ITMO544-Fall-Application-MP1/images /var/www/html/images
+mv ./ITMO544-Fall-Application-MP1/index.html /var/www/html
+mv ./ITMO544-Fall-Application-MP1/*.php /var/www/html
+mv ./ITM0544-Fall-Application-MP1/*.png /var/www/html
+mv ./ITM0544-Fall-Application-MP1/*.js /var/www/html
+mv ./ITM0544-Fall-Application-MP1/*.css /var/www/html
 
-sudo git clone https://github.com/snehakarunakaran/ITMO544-Fall-Application-MP1.git
+curl -sS https://getcomposer.org/installer | sudo php &> /tmp/getcomposer.txt
 
-sudo mv ITMO544-Fall-Application-MP1 /var/www/html
-sudo mv /var/www/html/ITMO544-Fall-Application-MP1/*.php /var/www/html
-pw=letmein
-export pw
+sudo php composer.phar require aws/aws-sdk-php &> /tmp/runcomposer.txt
 
+sudo mv vendor /var/www/html &> /tmp/movevendor.txt
 
+#sudo php /var/www/html/setup.php &> /tmp/database-setup.txt
 
-echo "Success" > /tmp/hello.txt
+echo "Hello!" > /tmp/hello.txt
+
 
 
 
